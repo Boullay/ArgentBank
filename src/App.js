@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import User from './containers/User';
+import Layout from './layout/Layout';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Provider } from "react-redux";
 
-function App() {
+import "./App.css";
+import configureStore from "./Store/store";
+
+const store = configureStore();
+
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+  <Layout>
+  <BrowserRouter>
+  <Header />
+  <Routes>
+    <Route path='/' element={<Home />} />
+    <Route path='login' element={<Login />} />
+    <Route path='user' element={<User />} />
+  </Routes>
+  <Footer />
+  </BrowserRouter>
+  </Layout>
+    </Provider>
   );
-}
+};
 
 export default App;
