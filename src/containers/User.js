@@ -1,9 +1,20 @@
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function User() {
-    return(
-        <main class="main bg-dark">
+function User({isLogged, user}) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!isLogged) {
+      navigate("/")
+    }
+  }, [])
+
+    return(<>
+      {isLogged ?
+        (<main class="main bg-dark">
         <div class="header">
-          <h1>Welcome back<br />Tony Jarvis!</h1>
+          <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
           <button class="edit-button">Edit Name</button>
         </div>
         <h2 class="sr-only">Accounts</h2>
@@ -37,8 +48,13 @@ function User() {
             <button class="transaction-button">View transactions</button>
           </div>
         </section>
-      </main>
+      </main>) : ("")
+    }</>
     )
 }
+const mapStateToProps = state => ({
+  isLogged: state.userState.user && state.userState.token,
+  user: state.userState.user,
+});
 
-export default User;
+export default connect(mapStateToProps)(User);

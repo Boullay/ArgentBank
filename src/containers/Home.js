@@ -1,18 +1,8 @@
-import { useEffect } from "react";
 import IconChat from "../img/icon-chat.png";
 import IconMoney from '../img/icon-money.png';
 import IconSecurity from '../img/icon-security.png';
-import { getCurrentUser } from "../services/auth";
-import { userProfile } from "../services/userService";
 
 const Home = () => {
-    useEffect(async () => {
-        const profile = await userProfile()
-        console.log(profile)
-       const user = await getCurrentUser()
-       console.log(user)
-    },[])
-
     return(<>
         <main>
       <div className="hero">

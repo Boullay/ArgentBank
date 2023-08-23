@@ -1,7 +1,9 @@
 import IconUser from "../img/IconUser";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { userData } from "../services/userService";
+import { userData, userProfile } from "../services/userService";
+import { useDispatch } from "react-redux";
+import {setToken, setUser} from "../Store/actions/userAction";
 
 
 
@@ -9,16 +11,29 @@ function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
 async function onSubmit(e) {
     e.preventDefault()
+    setLoading(true)
     try{
         const response = await userData(email, password)
-        console.log(response.body.token)
-
-        window.localStorage.setItem("token", response.body.token)
-        navigate("/user")
-    }catch(e){}
+        dispatch(setToken(response.body.token))
+          const profile = await userProfile(response.body.token)
+          const data = await profile.body
+          console.log(data)
+          dispatch(setUser(data))
+        }
+    catch(e){ 
+      console.log(e)
+      setError(true)
+    }
+   finally {
+    setLoading(false)
+    navigate("/profile")
+  }
 }
 
     return(
