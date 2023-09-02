@@ -1,6 +1,6 @@
 const Layout = ({children}) => {
     return(<>
-    <div>{children}</div>
+    <body>{children}</body>
     </>
     )
 }

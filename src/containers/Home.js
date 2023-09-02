@@ -3,8 +3,8 @@ import IconMoney from '../img/icon-money.png';
 import IconSecurity from '../img/icon-security.png';
 
 const Home = () => {
-    return(<>
-        <main>
+  return (<>
+    <main>
       <div className="hero">
         <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
@@ -49,8 +49,8 @@ const Home = () => {
         </div>
       </section>
     </main>
-    </>
-    )
+  </>
+  )
 }
 
 export default Home;

@@ -1,56 +1,64 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import EditName from "../components/FormUserName";
 
-function User({isLogged, user}) {
+function User({ isLogged, user }) {
+  const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if(!isLogged) {
+    if (!isLogged) {
       navigate("/")
     }
   }, [])
 
-    return(<>
-      {isLogged ?
-        (<main class="main bg-dark">
-        <div class="header">
-          <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
-          <button class="edit-button">Edit Name</button>
+  return (<>
+    {isLogged ?
+      (<main className="main bg-dark">
+        <div className="header">
+          {!toggle ? <>
+            <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
+            <button className="edit-button" onClick={() => setToggle(true)}>Edit Name</button>
+          </>
+            : <>
+              <EditName setToggle={setToggle} />
+            </>
+          }
         </div>
-        <h2 class="sr-only">Accounts</h2>
-        <section class="account">
-          <div class="account-content-wrapper">
-            <h3 class="account-title">Argent Bank Checking (x8349)</h3>
-            <p class="account-amount">$2,082.79</p>
-            <p class="account-amount-description">Available Balance</p>
+        <h2 className="sr-only">Accounts</h2>
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
+            <p className="account-amount">$2,082.79</p>
+            <p className="account-amount-description">Available Balance</p>
           </div>
-          <div class="account-content-wrapper cta">
-            <button class="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section class="account">
-          <div class="account-content-wrapper">
-            <h3 class="account-title">Argent Bank Savings (x6712)</h3>
-            <p class="account-amount">$10,928.42</p>
-            <p class="account-amount-description">Available Balance</p>
-          </div>
-          <div class="account-content-wrapper cta">
-            <button class="transaction-button">View transactions</button>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
           </div>
         </section>
-        <section class="account">
-          <div class="account-content-wrapper">
-            <h3 class="account-title">Argent Bank Credit Card (x8349)</h3>
-            <p class="account-amount">$184.30</p>
-            <p class="account-amount-description">Current Balance</p>
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
+            <p className="account-amount">$10,928.42</p>
+            <p className="account-amount-description">Available Balance</p>
           </div>
-          <div class="account-content-wrapper cta">
-            <button class="transaction-button">View transactions</button>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
+          </div>
+        </section>
+        <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
+            <p className="account-amount">$184.30</p>
+            <p className="account-amount-description">Current Balance</p>
+          </div>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
           </div>
         </section>
       </main>) : ("")
     }</>
-    )
+  )
 }
 const mapStateToProps = state => ({
   isLogged: state.userState.user && state.userState.token,

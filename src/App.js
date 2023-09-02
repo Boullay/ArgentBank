@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import User from './containers/User';
@@ -13,20 +13,20 @@ import configureStore from "./Store/store";
 
 const store = configureStore();
 
-const App = (props) => {
+const App = () => {
   return (
     <Provider store={store}>
-  <Layout>
-  <BrowserRouter>
-  <Header />
-  <Routes>
-    <Route path='/' element={<Home />} />
-    <Route path='login' element={<Login />} />
-    <Route path='profile' element={<User />} />
-  </Routes>
-  <Footer />
-  </BrowserRouter>
-  </Layout>
+      <Layout>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='login' element={<Login />} />
+            <Route path='profile' element={<User />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </Layout>
     </Provider>
   );
 };
