@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import User from './containers/User';
-import Layout from './layout/Layout';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Provider } from "react-redux";
@@ -16,7 +15,6 @@ const store = configureStore();
 const App = () => {
   return (
     <Provider store={store}>
-      <Layout>
         <BrowserRouter>
           <Header />
           <Routes>
@@ -26,7 +24,6 @@ const App = () => {
           </Routes>
           <Footer />
         </BrowserRouter>
-      </Layout>
     </Provider>
   );
 };

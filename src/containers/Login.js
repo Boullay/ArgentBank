@@ -43,16 +43,16 @@ function Login() {
         <h1>Sign In</h1>
         <form onSubmit={onSubmit}>
           <div className="input-wrapper">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input onChange={e => setEmail(e.target.value)} type="text" id="email" />
           </div>
           <div className="input-wrapper">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input onChange={e => setPassword(e.target.value)} type="password" id="password" />
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
+            <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button">Sign In</button>
         </form>

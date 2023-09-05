@@ -31,15 +31,15 @@ function EditName({ setToggle }) {
         <form onSubmit={onSubmit}>
             <div className="form-display form-username">
                 <div className="form-label">
-                    <label for="Username">Username : </label>
+                    <label htmlFor="Username">Username : </label>
                     <input type="text" id="Username" size="21" onChange={(e) => setUserName(e.target.value)}></input>
                 </div>
                 <div className="form-label">
-                    <label for="Lastname" >Firstname : </label>
+                    <label htmlFor="Lastname" >Firstname : </label>
                     <input type="text" id="Firstname" size="21" disabled></input>
                 </div>
                 <div className="form-label">
-                    <label for="Lastname" >Lastname : </label>
+                    <label htmlFor="Lastname" >Lastname : </label>
                     <input type="text" id="Lastname" size="21" disabled></input>
                 </div>
             </div>
